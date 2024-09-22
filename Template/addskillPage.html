@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+    
+    
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Form</title>
+    <style>body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .container {
+        width: 80%;
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    label {
+        margin: 10px 0 5px;
+        font-weight: bold;
+    }
+    
+    input, textarea {
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-bottom: 15px;
+    }
+    
+    input[type="file"] {
+        border: none;
+    }
+    
+    button {
+        padding: 10px 20px;
+        border: none;
+        background-color: #007bff;
+        color: white;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    
+    button:hover {
+        background-color: #0056b3;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <hr>
+        <hr>
+    <hr>
+        <h1>skill Form</h1>
+        <form action="{% url 'addskillPage' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <label for="usertype">All User:</label>
+
+                <select id="usertype" name="all_user_name" required>
+
+                    
+                    {% for i in ALL_user %}
+
+                    <option value="{{i.id}}">{{i.username}}</option>
+
+                    {% endfor %}
+                        
+
+            </select>
+
+
+            
+    <label for="country">PROFHECEENCY</label>
+    <select id="country" name="PROFHECEENCY">
+      <option value="high"{% if data.PROFHECEENCY == 'high' %} selected {% endif %}>HIGH</option>
+      <option value="medium"{% if data.PROFHECEENCY == 'medium' %} selected {% endif %}>MEDIUM</option>
+      <option value="low"{% if data.PROFHECEENCY == 'low' %} selected {% endif %}>LOW</option>
+      
+    </select>
+    <label for="country">skill_name</label>
+  
+    <select id="usertype" name="skill_name" required>
+
+                    
+        {% for i in skill_name %}
+
+        <option value="{{i.id}}">{{i.skill_name}}</option>
+
+        {% endfor %}
+            
+
+    </select>
+      
+
+
+        
+
+            <button type="submit">Add skill</button>
+        </form>
+    </div>
+</body>
+</html>
+
+    
+
+{% endblock body %}
+    

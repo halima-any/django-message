@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    
+    
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .resume-form {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .preview {
+            margin-top: 20px;
+        }
+
+        .preview-content {
+            border-top: 2px solid #007BFF;
+            padding-top: 20px;
+        }
+
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="resume-form">
+        <h1>Resume Form</h1>
+  {% include 'include/message.html' %}
+
+        <form action="{% url 'createResume' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="first_name">First Name</label>
+                <input type="text" id="first_name" name="first_name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="last_name">Last Name</label>
+                <input type="text" id="last_name" name="last_name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" id="age" name="age" required>
+            </div>
+
+            <div class="form-group">
+                <label for="gender_type">Gender</label>
+                <select id="gender_type" name="gender_type" required>
+                    <option value="">Select</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="designation">Designation</label>
+                <input type="text" id="designation" name="designation" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="carrier_summery">carrier_summery</label>
+                <input type="text" id="carrier_summery" name="carrier_summery" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="contact">contact</label>
+                <input type="text" id="contact" name="contact" required>
+            </div>
+
+
+            <div class="form-group">
+                <label for="img">Profile Image URL</label>
+                <input type="file" id="img" name="img" required>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+
+</body>
+</html>
+
+{% endblock body %}
+
